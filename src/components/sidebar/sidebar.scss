@@ -1,6 +1,6 @@
 .sidebar {
   display: flex;
-  flex: 0.35;
+  flex: 0.3;
 
   .sidebarLeft {
     height: 100vh;
@@ -27,9 +27,11 @@
 
   .sidebarRight {
     position: relative;
-    width: 300px;
+    max-width: 300px;
+    min-width: 300px;
     height: 100vh;
     background: #2b2d31;
+    flex-grow: 1;
 
     .sidebarTop {
       display: flex;
@@ -75,6 +77,7 @@
 
     img {
       width: 60px;
+      border-radius: 50%;
     }
 
     .accountName {

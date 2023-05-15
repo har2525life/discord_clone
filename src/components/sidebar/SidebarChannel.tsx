@@ -1,14 +1,30 @@
-import React from "react";
-import "./sidebarChannel.scss"
+import React from 'react'
+import './sidebarChannel.scss'
+import { DocumentData } from 'firebase/firestore'
+import { useAppDispatch } from '../../app/hools'
+import { setChannelInfo } from '../../features/channelSlice'
 
-const SidebarChannel = () => {
-  return (
-    <div className="channels">
-      <h4>
-        <span className="sidebarChannelsHash">#</span> Udemy
-      </h4>
-    </div>
-  );
-};
+type Props = {
+    id : string
+    channel: DocumentData
+}
 
-export default SidebarChannel;
+const SidebarChannel: React.FC<Props> = ({ channel, id }) => {
+    const dispatch = useAppDispatch()
+
+    const selectedChannel = () => {
+        dispatch(setChannelInfo({
+            channelId: id,
+            channelName: channel.channel.channelName
+        }))
+    }
+    return (
+        <div className="channels" onClick={selectedChannel}>
+            <h4>
+                <span className="sidebarChannelsHash">#</span> {channel.channel.channelName}
+            </h4>
+        </div>
+    )
+}
+
+export default SidebarChannel
